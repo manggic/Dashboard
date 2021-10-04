@@ -19,8 +19,7 @@ function App() {
         <div className="body">
           <Switch>
             <Route
-              path="/"
-              key="Dashboard"
+              path="/dashboard"
               exact
               component={() => {
                 return <Dashboard />;
@@ -28,7 +27,6 @@ function App() {
             />
             <Route
               path="/department"
-              key="Department"
               exact
               component={() => {
                 return <Department />;

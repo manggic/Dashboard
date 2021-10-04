@@ -7,10 +7,11 @@ import * as AntDesign from "react-icons/ai";
 import * as Feather from "react-icons/fi";
 import * as MaterialDesign from "react-icons/md";
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 let menus = [
   { iconName: "AiOutlineDashboard", menuName: "Dashboard" },
-  { iconName: "BsFillGridFill", menuName: "Department " },
+  { iconName: "BsFillGridFill", menuName: "Department" },
   // { iconName: "BsFillHandThumbsUpFill", menuName: "Team" },
   // { iconName: "BsFillGeoFill", menuName: "Lecture" },
   // { iconName: "BsFillGearFill", menuName: "Settings" },
@@ -18,23 +19,19 @@ let menus = [
 
 function NavBar() {
   const [showOnHover, setShowOnHover] = useState(false);
+
+  const location = useLocation();
+  console.log("route", location.pathname);
+
   const history = useHistory();
   const changeTheHover = () => {
     setShowOnHover(true);
   };
 
   const onMenuClick = (menuName) => {
-    console.log("logggggggg");
-    if (menuName === "Dashboard") {
-      console.log("dashboard");
-      history.push({
-        pathname: "/",
-      });
-    } else {
-      history.push({
-        pathname: "/department",
-      });
-    }
+    console.log("logggggggg", menuName);
+
+    history.push(`${menuName.toLowerCase()}`);
   };
 
   const Menu = (menu) => {
@@ -61,9 +58,16 @@ function NavBar() {
         break;
     }
 
-    console.log("iconName", IconName);
     return (
-      <div className="menu" key={menu.menuName}>
+      <div
+        className="menu"
+        id={
+          menu.menuName.toLowerCase() === useLocation().pathname.slice(1)
+            ? "active"
+            : ""
+        }
+        key={menu.menuName}
+      >
         <div className="menu-icon">
           <IconName />
         </div>

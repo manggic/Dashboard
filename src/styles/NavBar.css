@@ -5,6 +5,11 @@
   background-color: aliceblue;
 }
 
+#active {
+  color: brown;
+  font-weight: 600;
+}
+
 .nav-header {
   padding: 15px 0px 15px 0px;
   font-size: 20px;
