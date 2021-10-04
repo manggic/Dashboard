@@ -1,0 +1,93 @@
+.dashboard {
+  /* border: 1px solid black; */
+  height: 100%;
+}
+
+.stackBarGraph {
+  /* width: 48%; */
+  height: 50%;
+  background-color: #fff;
+  -webkit-box-shadow: #00000012 0px 8px 16px 4px;
+  box-shadow: #00000012 0px 8px 16px 4px;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.graphBlock {
+  margin-top: 40px;
+}
+
+.recharts-responsive-container {
+  margin-top: 50px;
+}
+
+.or-spacer-vertical {
+  display: inline-block;
+
+  position: relative;
+}
+.or-spacer-vertical .mask {
+  overflow: hidden;
+  width: 20px;
+  height: 32px;
+}
+.or-spacer-vertical.left .mask:after {
+  content: "";
+  display: block;
+  margin-left: -20px;
+  width: 20px;
+  height: 100%;
+  border-radius: 12px / 125px;
+  box-shadow: 0 0 8px black;
+}
+.or-spacer-vertical.right .mask:before {
+  content: "";
+  display: block;
+  margin-left: 20px;
+  width: 20px;
+  height: 100%;
+  border-radius: 12px / 125px;
+  box-shadow: 0 0 8px black;
+}
+
+.card {
+  display: flex;
+  height: 140px;
+  width: 23.5%;
+  background-color: #fff;
+  box-shadow: #00000012 0px 8px 16px 4px;
+  border-radius: 8px;
+  /* margin-right: 2.5%; */
+  justify-content: space-between;
+  padding: 30px;
+  position: relative;
+}
+.card:last-child {
+  margin-right: 0;
+}
+
+.cardIcon {
+  font-size: 50px;
+  color: #287594;
+  position: absolute;
+  right: 9%;
+  /* opacity: 0.4; */
+  top: 0;
+  height: 100%;
+  /* transform: rotate(-18deg); */
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.cardText strong {
+  font-size: 50px;
+  color: #562ab6;
+  line-height: 1.2;
+}
+
+.cardText p {
+  font-size: 15px;
+  color: #828282;
+  padding-left: 3px;
+}
