@@ -184,46 +184,36 @@ const cardTotalData = [
   { name: "Total", count: 100, iconName: "BsCardChecklist" },
 ];
 function Department() {
-  const [whatCountToShow, setWhatCountToShow] = useState("Total Count");
-  const [cardData, setCardData] = useState(cardTotalData);
-  const [isToggle, setIsToggle] = useState(false);
-  const [toggleValue, setToggleValue] = useState("Total");
+  const [state, setstate] = useState({
+    whatCountToShow: "Total Count",
+    cardData: cardTotalData,
+    toggleValue: "Total",
+  });
 
+  // const [whatCountToShow, setWhatCountToShow] = useState("Total Count");
+  // const [cardData, setCardData] = useState(cardTotalData);
+  // const [isToggle, setIsToggle] = useState(false);
+  // const [toggleValue, setToggleValue] = useState("Total");
+
+  const changeTheSelect = () => {
+    setstate({
+      ...state,
+      whatCountToShow:
+        state.whatCountToShow === "Total Count" ? "Today Count" : "Total Count",
+      cardData:
+        state.whatCountToShow === "Total Count" ? cardTodayData : cardTotalData,
+    });
+  };
   const menu = (
     <Menu>
       <Menu.Item>
-        <a
-          onClick={() =>
-            this.setState((prev) => {
-              return {
-                ...prev,
-                whatCountToShow: "Total Count",
-                cardData: cardTotalData,
-              };
-            })
-          }
-        >
-          Total Count
-        </a>
+        <a onClick={() => changeTheSelect()}>Total Count</a>
       </Menu.Item>
       <Menu.Item>
-        <a
-          onClick={() =>
-            this.setState((prev) => {
-              return {
-                ...prev,
-                whatCountToShow: "Today Count",
-                cardData: cardTodayData,
-              };
-            })
-          }
-        >
-          Today Count
-        </a>
+        <a onClick={() => changeTheSelect()}>Today Count</a>
       </Menu.Item>
     </Menu>
   );
-
   const onChange = () => {
     console.log("onChange");
   };
@@ -234,7 +224,7 @@ function Department() {
         <LineChart
           // width={600}
           // height={350}
-          data={toggleValue === "Today" ? TodayData : TotalData}
+          data={state.toggleValue === "Today" ? TodayData : TotalData}
           margin={{
             left: 0,
             right: 0,
@@ -321,7 +311,7 @@ function Department() {
             color: "rgb(52, 116, 132)",
           }}
         >
-          {whatCountToShow}
+          {state.whatCountToShow}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div
@@ -400,7 +390,7 @@ function Department() {
               </div> */}
       </div>
 
-      <div className="cardBlock">{card(cardData)}</div>
+      <div className="cardBlock">{card(state.cardData)}</div>
 
       <div className="graphBlock">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -414,9 +404,9 @@ function Department() {
                     id="togBtn"
                     onChange={(e) => {
                       if (e.target.checked) {
-                        setToggleValue("Today");
+                        setstate({ ...state, toggleValue: "Today" });
                       } else {
-                        setToggleValue("Total");
+                        setstate({ ...state, toggleValue: "Total" });
                       }
                       console.log("logggg", e.target.checked);
                     }}

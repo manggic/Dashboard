@@ -128,40 +128,31 @@ const data = [
 ];
 
 function Dashboard() {
-  const [whatCountToShow, setWhatCountToShow] = useState("Total Count");
-  const [cardData, setCardData] = useState(cardTotalData);
+  const [state, setstate] = useState({
+    whatCountToShow: "Total Count",
+    cardData: cardTotalData,
+  });
+
+  // const [whatCountToShow, setWhatCountToShow] = useState("Total Count");
+  // const [cardData, setCardData] = useState(cardTotalData);
+
+  const changeTheSelect = () => {
+    setstate({
+      ...state,
+      whatCountToShow:
+        state.whatCountToShow === "Total Count" ? "Today Count" : "Total Count",
+      cardData:
+        state.whatCountToShow === "Total Count" ? cardTodayData : cardTotalData,
+    });
+  };
 
   const menu = (
     <Menu>
       <Menu.Item>
-        <a
-          onClick={() =>
-            this.setState((prev) => {
-              return {
-                ...prev,
-                whatCountToShow: "Total Count",
-                cardData: cardTotalData,
-              };
-            })
-          }
-        >
-          Total Count
-        </a>
+        <a onClick={() => changeTheSelect()}>Total Count</a>
       </Menu.Item>
       <Menu.Item>
-        <a
-          onClick={() =>
-            this.setState((prev) => {
-              return {
-                ...prev,
-                whatCountToShow: "Today Count",
-                cardData: cardTodayData,
-              };
-            })
-          }
-        >
-          Today Count
-        </a>
+        <a onClick={() => changeTheSelect()}>Today Count</a>
       </Menu.Item>
     </Menu>
   );
@@ -228,7 +219,7 @@ function Dashboard() {
             // color: rgb(52, 116, 132);
           }}
         >
-          {whatCountToShow}
+          {state.whatCountToShow}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div
@@ -289,7 +280,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      {cardData && card(cardData)}
+      {state.cardData && card(state.cardData)}
       <div class="graphBlock">
         <div
           style={{
