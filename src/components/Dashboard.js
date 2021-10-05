@@ -19,11 +19,11 @@ import * as FontAwesome from "react-icons/fa";
 import { DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
 import { card, verticalLineseperator } from "../common/components";
+import { useHistory } from "react-router-dom";
 
 import { cardTodayData, cardTotalData, data } from "../data/Dashboard";
 import NavBar from "./NavBar";
 const { RangePicker } = DatePicker;
-
 function Dashboard() {
   const [state, setstate] = useState({
     whatCountToShow: "Total Count",
@@ -39,7 +39,7 @@ function Dashboard() {
         state.whatCountToShow === "Total Count" ? cardTodayData : cardTotalData,
     });
   };
-
+  const history = useHistory();
   const menu = (
     <Menu>
       <Menu.Item>
@@ -107,6 +107,10 @@ function Dashboard() {
       </div>
     );
   };
+
+  if (localStorage.getItem("token") !== "signin") {
+    history.push("/");
+  }
 
   const whatCountToShow = () => {
     return (

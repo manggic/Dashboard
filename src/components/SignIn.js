@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
+import { useHistory } from "react-router-dom";
 
 import loginLogo from "images/login.png";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -10,13 +11,24 @@ function SignIn() {
     userName: "",
     password: "",
   });
+  const history = useHistory();
 
   const login = (e) => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const onFinish = (values) => {
     console.log("Success:", values);
+
+    if (values.username && values.password) {
+      localStorage.setItem("token", "signin");
+
+      history.push("/dashboard");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {

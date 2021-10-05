@@ -12,6 +12,8 @@ import {
 import Dashboard from "./components/Dashboard";
 import Department from "./components/Department";
 import SignIn from "./components/SignIn";
+import NotFound from "./components/NotFound";
+
 function App() {
   return (
     <Router>
@@ -37,6 +39,14 @@ function App() {
             exact
             component={() => {
               return <Department />;
+            }}
+          />
+
+          <Route
+            path="*"
+            exact
+            component={() => {
+              return <NotFound />;
             }}
           />
         </Switch>

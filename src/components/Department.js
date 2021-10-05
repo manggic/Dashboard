@@ -11,6 +11,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useHistory } from "react-router-dom";
+
 import "../styles/Department.css";
 import { DatePicker, Space } from "antd";
 import { Table } from "antd";
@@ -38,6 +40,8 @@ function Department() {
     cardData: cardTotalData,
     toggleValue: "Total",
   });
+
+  const history = useHistory();
 
   const changeTheSelect = () => {
     setstate({
@@ -93,6 +97,10 @@ function Department() {
       </ResponsiveContainer>
     );
   };
+
+  if (localStorage.getItem("token") !== "signin") {
+    history.push("/");
+  }
 
   const Listing = () => {
     return (
