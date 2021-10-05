@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.ant-input-affix-wrapper {
+  padding: 8px 10px;
+}
+
 .signInRight {
   justify-content: center;
   width: 60%;

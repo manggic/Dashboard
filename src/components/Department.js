@@ -30,7 +30,11 @@ import {
   TodayData,
   TotalData,
 } from "../data/Department";
-import { card, verticalLineseperator } from "../common/components";
+import {
+  card,
+  LogoutSection,
+  verticalLineseperator,
+} from "../common/components";
 import NavBar from "./NavBar";
 const { RangePicker } = DatePicker;
 
@@ -43,25 +47,25 @@ function Department() {
 
   const history = useHistory();
 
-  const changeTheSelect = () => {
+  const changeTheSelect = (selected) => {
     setstate({
       ...state,
       whatCountToShow:
-        state.whatCountToShow === "Total Count" ? "Today Count" : "Total Count",
-      cardData:
-        state.whatCountToShow === "Total Count" ? cardTodayData : cardTotalData,
+        selected === "Total Count" ? "Total Count" : "Today Count",
+      cardData: selected === "Total Count" ? cardTotalData : cardTodayData,
     });
   };
   const menu = (
     <Menu>
       <Menu.Item>
-        <a onClick={() => changeTheSelect()}>Total Count</a>
+        <a onClick={() => changeTheSelect("Total Count")}>Total Count</a>
       </Menu.Item>
       <Menu.Item>
-        <a onClick={() => changeTheSelect()}>Today Count</a>
+        <a onClick={() => changeTheSelect("Today Count")}>Today Count</a>
       </Menu.Item>
     </Menu>
   );
+
   const onChange = () => {
     console.log("onChange");
   };
@@ -207,6 +211,7 @@ function Department() {
       <NavBar />
 
       <div className="body">
+        {LogoutSection()}
         <div>
           <div
             style={{

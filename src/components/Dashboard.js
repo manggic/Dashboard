@@ -11,6 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
 import { DatePicker, Space } from "antd";
 import { DownloadOutlined, FilterOutlined } from "@ant-design/icons";
 import { Button, Radio } from "antd";
@@ -18,7 +19,11 @@ import * as Bootstrap from "react-icons/bs";
 import * as FontAwesome from "react-icons/fa";
 import { DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
-import { card, verticalLineseperator } from "../common/components";
+import {
+  card,
+  LogoutSection,
+  verticalLineseperator,
+} from "../common/components";
 import { useHistory } from "react-router-dom";
 
 import { cardTodayData, cardTotalData, data } from "../data/Dashboard";
@@ -29,24 +34,23 @@ function Dashboard() {
     whatCountToShow: "Total Count",
     cardData: cardTotalData,
   });
+  const history = useHistory();
 
-  const changeTheSelect = () => {
+  const changeTheSelect = (selected) => {
     setstate({
       ...state,
       whatCountToShow:
-        state.whatCountToShow === "Total Count" ? "Today Count" : "Total Count",
-      cardData:
-        state.whatCountToShow === "Total Count" ? cardTodayData : cardTotalData,
+        selected === "Total Count" ? "Total Count" : "Today Count",
+      cardData: selected === "Total Count" ? cardTotalData : cardTodayData,
     });
   };
-  const history = useHistory();
   const menu = (
     <Menu>
       <Menu.Item>
-        <a onClick={() => changeTheSelect()}>Total Count</a>
+        <a onClick={() => changeTheSelect("Total Count")}>Total Count</a>
       </Menu.Item>
       <Menu.Item>
-        <a onClick={() => changeTheSelect()}>Today Count</a>
+        <a onClick={() => changeTheSelect("Today Count")}>Today Count</a>
       </Menu.Item>
     </Menu>
   );
@@ -158,6 +162,7 @@ function Dashboard() {
     <div className="dashboard">
       <NavBar />
       <div className="body">
+        {LogoutSection()}
         <div
           style={{
             display: "flex",
