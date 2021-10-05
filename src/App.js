@@ -34,8 +34,6 @@ function App() {
             />
           </Switch>
         </div>
-
-        {/* <Body /> */}
       </div>
     </Router>
   );
