@@ -5,6 +5,10 @@
   height: 34px;
 }
 
+.department {
+  display: flex;
+}
+
 .card {
   display: flex;
   height: 140px;

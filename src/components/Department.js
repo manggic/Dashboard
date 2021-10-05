@@ -29,6 +29,7 @@ import {
   TotalData,
 } from "../data/Department";
 import { card, verticalLineseperator } from "../common/components";
+import NavBar from "./NavBar";
 const { RangePicker } = DatePicker;
 
 function Department() {
@@ -194,46 +195,51 @@ function Department() {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: "60px",
-        }}
-      >
-        {whatCountToShow()}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {dateFilter()}
-          {verticalLineseperator()}
-          {selectDropdown()}
-        </div>
-      </div>
+    <div className="department">
+      <NavBar />
 
-      <div className="cardBlock">{card(state.cardData)}</div>
-
-      <div className="graphBlock">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div className="lineGraph">
-            <div className="lineGraphHeader">
-              <div className="heading">Statistics</div>
-              {switchButton()}
+      <div className="body">
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "60px",
+            }}
+          >
+            {whatCountToShow()}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {dateFilter()}
+              {verticalLineseperator()}
+              {selectDropdown()}
             </div>
-            <div style={{ margin: "auto" }}>{Linecharts()}</div>
           </div>
-          <div className="listing">
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "22px",
-                fontFamily: "system-ui",
-                paddingBottom: "25px",
-              }}
-            >
-              Top 5 Department
-            </div>{" "}
-            {Listing()}
+
+          <div className="cardBlock">{card(state.cardData)}</div>
+        </div>
+        <div className="graphBlock">
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="lineGraph">
+              <div className="lineGraphHeader">
+                <div className="heading">Statistics</div>
+                {switchButton()}
+              </div>
+              <div style={{ margin: "auto" }}>{Linecharts()}</div>
+            </div>
+            <div className="listing">
+              <div
+                style={{
+                  textAlign: "center",
+                  fontSize: "22px",
+                  fontFamily: "system-ui",
+                  paddingBottom: "25px",
+                }}
+              >
+                Top 5 Department
+              </div>{" "}
+              {Listing()}
+            </div>
           </div>
         </div>
       </div>

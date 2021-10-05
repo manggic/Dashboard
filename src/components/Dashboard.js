@@ -21,6 +21,7 @@ import { Menu, Dropdown } from "antd";
 import { card, verticalLineseperator } from "../common/components";
 
 import { cardTodayData, cardTotalData, data } from "../data/Dashboard";
+import NavBar from "./NavBar";
 const { RangePicker } = DatePicker;
 
 function Dashboard() {
@@ -151,34 +152,37 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: "60px",
-        }}
-      >
-        {whatCountToShow()}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {dateFilter()}
-          {verticalLineseperator()}
-          {selectDropdown()}
-        </div>
-      </div>
-      {state.cardData && card(state.cardData)}
-      <div class="graphBlock">
+      <NavBar />
+      <div className="body">
         <div
           style={{
-            fontFamily: "system-ui",
-            fontSize: "31px",
-            color: "rgb(52, 116, 132)",
-            fontWeight: "500",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "60px",
           }}
         >
-          Customer Analysis
+          {whatCountToShow()}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {dateFilter()}
+            {verticalLineseperator()}
+            {selectDropdown()}
+          </div>
         </div>
-        <div class="stackBarGraph">{barChart()}</div>
+        {state.cardData && card(state.cardData)}
+        <div class="graphBlock">
+          <div
+            style={{
+              fontFamily: "system-ui",
+              fontSize: "31px",
+              color: "rgb(52, 116, 132)",
+              fontWeight: "500",
+            }}
+          >
+            Customer Analysis
+          </div>
+          <div class="stackBarGraph">{barChart()}</div>
+        </div>
       </div>
     </div>
   );

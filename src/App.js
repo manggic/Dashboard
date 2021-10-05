@@ -11,29 +11,35 @@ import {
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Department from "./components/Department";
+import SignIn from "./components/SignIn";
 function App() {
   return (
     <Router>
       <div className="app">
-        <NavBar />
-        <div className="body">
-          <Switch>
-            <Route
-              path="/dashboard"
-              exact
-              component={() => {
-                return <Dashboard />;
-              }}
-            />
-            <Route
-              path="/department"
-              exact
-              component={() => {
-                return <Department />;
-              }}
-            />
-          </Switch>
-        </div>
+        {/* <NavBar /> */}
+        <Switch>
+          <Route
+            path="/dashboard"
+            exact
+            component={() => {
+              return <Dashboard />;
+            }}
+          />
+          <Route
+            path="/"
+            exact
+            component={() => {
+              return <SignIn />;
+            }}
+          />
+          <Route
+            path="/department"
+            exact
+            component={() => {
+              return <Department />;
+            }}
+          />
+        </Switch>
       </div>
     </Router>
   );
