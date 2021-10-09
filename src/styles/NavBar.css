@@ -1,12 +1,13 @@
 .nav {
   padding: 50px;
   width: 20%;
-  height: 100vh;
-  background-color: aliceblue;
+  min-height: 100vh;
+  background-color: #6e6cf1;
+  color: azure;
 }
 
 #active {
-  color: brown;
+  color: #ff7875;
   font-weight: 600;
 }
 

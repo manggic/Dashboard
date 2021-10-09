@@ -6,6 +6,19 @@
   padding: 8px 10px;
 }
 
+.imageContainer {
+  justify-content: center;
+  display: flex;
+}
+.formContainer {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  padding: 45px;
+  background: #e6f7ff91;
+  width: 50%;
+  border-radius: 12px;
+}
 .signInRight {
   justify-content: center;
   width: 60%;
@@ -13,14 +26,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: aqua;
+  background: #0e53877a;
 }
 
 .signInLeft {
   display: flex;
   justify-content: center;
   height: 100vh;
-  background: blueviolet;
+  background: rgb(190 210 221);
   width: 40%;
   align-items: center;
 }
@@ -47,4 +60,8 @@
 } */
 .login-form-button {
   width: 100%;
+}
+
+.ant-btn-primary {
+  background-color: #88a2b1;
 }

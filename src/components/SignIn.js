@@ -12,7 +12,7 @@ function SignIn() {
     password: "",
   });
   const history = useHistory();
-
+  const [form] = Form.useForm();
   const login = (e) => {
     e.preventDefault();
   };
@@ -24,7 +24,7 @@ function SignIn() {
   const onFinish = (values) => {
     console.log("Success:", values);
 
-    if (values.username && values.password) {
+    if (values.email && values.password) {
       localStorage.setItem("token", "signin");
 
       history.push("/dashboard");
@@ -49,8 +49,8 @@ function SignIn() {
       </div>
 
       <div className="signInRight">
-        <div className="form">
-          <div>
+        <div className="formContainer">
+          <div className="imageContainer">
             <img
               style={{
                 width: "260px",
@@ -59,44 +59,49 @@ function SignIn() {
               }}
               src={loginLogo}
             />
-            <Form
-              name="normal_login"
-              className="login-form"
-              initialValues={{
-                remember: true,
-              }}
-              onFinish={onFinish}
+          </div>
+
+          <Form
+            form={form}
+            name="normal_login"
+            className="login-form"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+          >
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Username!",
+                },
+              ]}
             >
-              <Form.Item
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Username!",
-                  },
-                ]}
-              >
-                <Input
-                  prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Username"
-                />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Password!",
-                  },
-                ]}
-              >
-                <Input
-                  prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Item>
-              {/* <Form.Item>
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                type="email"
+                placeholder="Email"
+                value={""}
+              />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Password!",
+                },
+              ]}
+            >
+              <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            {/* <Form.Item>
                 <Form.Item name="remember" valuePropName="checked" noStyle>
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
@@ -105,19 +110,37 @@ function SignIn() {
                   Forgot password
                 </a>
               </Form.Item> */}
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
+                Login
+              </Button>
+              {/* <div className="signupSection">
+                Want to{" "}
+                <span
+                  onClick={() => {
+                    form.resetFields();
 
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
+                    setState({
+                      // userName: "",
+                      // password: "",
+                      whatOptionToShow:
+                        state.whatOptionToShow === "SignUp"
+                          ? "LogIn"
+                          : "SignUp",
+                    });
+                  }}
+                  className="signup"
                 >
-                  Log in
-                </Button>
-                {/* Or <a href="">register now!</a> */}
-              </Form.Item>
-            </Form>
-          </div>
+                  "Log In"
+                </span>
+              </div> */}
+              {/* Or <a href="">register now!</a> */}
+            </Form.Item>
+          </Form>
         </div>
       </div>
     </div>
